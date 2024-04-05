@@ -1,0 +1,117 @@
+import java.util.ArrayList;
+public class BookStore {
+    
+
+    //ArrayList<Member> membersList = new ArrayList();
+   // ArrayList<PremiumMember> pMembersList = new ArrayList();
+   ArrayList<Member> membersList= new ArrayList();
+
+    /**
+     * Constructor. Calls helper methods that generate arraylists of products and members
+     */
+    public BookStore() {
+
+        generateMembers();
+    }
+    
+    
+    
+    
+
+    
+    private void generateMembers() {
+    
+        Member member1 = new Member("Steve",5);
+        PremiumMember member2 = new PremiumMember("Jessica", 3, true);
+        
+        //membersList.add(member1);
+        //pmembersList.add(member2);
+        membersList.add(member1);
+        membersList.add(member2);
+        
+    }
+    
+    /**
+     * Adds a new member to the members arraylist
+     * @param name member's name as a String
+     * @param premium whether or not the new member should be a premium or free member
+     */
+    public void addNewMember(String name, boolean premium) {
+        if (premium) {
+            membersList.add(new PremiumMember(name, 0, true));
+        } else {
+            membersList.add(new Member(name,0));
+        }
+    }
+
+
+
+    /**
+     * getter for members list
+     * @return arraylist of Members
+     */
+    public ArrayList<Member> getMembersList() {
+        return membersList;
+    }
+    
+    
+}
+public abstract class Person
+{
+    private String name;
+
+    public Person(String name)
+    {
+        this.name=name;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
+        this.name=name;
+    }
+}
+public class PremiumMember extends Member
+{
+    private String name;
+    private int numberPurchases;
+    private boolean hasPaidDues;
+
+    
+    public PremiumMember(String name, int numberPurchases, boolean hasPaidDues)
+    {
+        super(name,numberPurchases);
+        this.hasPaidDues=hasPaidDues;
+    }
+    public boolean hasPaidDues()
+    {
+        return hasPaidDues;
+    }
+    public void payDues()
+    {
+        if (!hasPaidDues)
+        hasPaidDues = true;
+    }
+    }
+public class Member extends Person
+{
+    public String name;
+    public int numberPurchases;
+    
+    public Member(String name, int numberPurchases)
+    {
+        super(name);
+        this.numberPurchases=numberPurchases;
+    }
+    public int getNumPurchases()
+    {
+        return numberPurchases;
+    }
+    public void setnumberPurchases(int numberPurchases)
+    {
+        this.numberPurchases=numberPurchases;
+    }
+
+}
